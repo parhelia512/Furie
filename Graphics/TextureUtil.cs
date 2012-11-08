@@ -556,7 +556,7 @@ namespace Graphics
                 }
         }
 
-        public static Vector3 NormalFromHeightmap<T>(T[,] data, Vector2 uv, Vector2 gridStep, Size dataSize)
+        public static Vector3 NormalFromHeightmap<T>(T[,] data, Vector2 uv, Vector2 gridStep, Size dataSize, float heightScale)
             where T : Software.Texel.ITexel
         {
             int x = (int)(uv.X * dataSize.Width);
@@ -569,10 +569,10 @@ namespace Graphics
             float hb = data[Math.Min(y + 1, dataSize.Height - 1), x].R;
             float hc = data[y, x].R;
 
-            Vector3 l = new Vector3(-gridStep.X, 0, hl - hc);
-            Vector3 r = new Vector3(+gridStep.X, 0, hr - hc);
-            Vector3 t = new Vector3(0, -gridStep.Y, ht - hc);
-            Vector3 b = new Vector3(0, +gridStep.Y, hb - hc);
+            Vector3 l = new Vector3(-gridStep.X, 0, heightScale * (hl - hc));
+            Vector3 r = new Vector3(+gridStep.X, 0, heightScale * (hr - hc));
+            Vector3 t = new Vector3(0, -gridStep.Y, heightScale * (ht - hc));
+            Vector3 b = new Vector3(0, +gridStep.Y, heightScale * (hb - hc));
             Vector3 n = Vector3.Cross(l, t) + Vector3.Cross(r, b);
 
             n.Normalize();

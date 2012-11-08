@@ -717,7 +717,7 @@ namespace Graphics.Software
                 v.Normal = n;*/
 
                 v.Normal = TextureUtil.NormalFromHeightmap(metaResource.Heightmap.Data,
-                    relativePosition, gridStep, new Size(heightMapWidth, heightMapHeight));
+                    relativePosition, gridStep, new Size(heightMapWidth, heightMapHeight), metaResource.Height);
 
                 indexedPlane.VertexBuffer[i] = v;
             }
@@ -844,7 +844,7 @@ namespace Graphics.Software
                 v.Position = new Vector3(v.Position.X, v.Position.Y, h);
 
                 v.Normal = TextureUtil.NormalFromHeightmap(metaResource.Heightmap.Data,
-                    relativePosition, gridStep, new Size(heightMapWidth, heightMapHeight));
+                    relativePosition, gridStep, new Size(heightMapWidth, heightMapHeight), metaResource.Height);
 
                 indexedPlane.VertexBuffer[i] = v;
             }
@@ -952,7 +952,7 @@ namespace Graphics.Software
                     h);
 
                 v.Normal = TextureUtil.NormalFromHeightmap(metaResource.Heightmap.Data,
-                    relativePosition, gridStep, new Size(heightMapWidth, heightMapHeight));
+                    relativePosition, gridStep, new Size(heightMapWidth, heightMapHeight), metaResource.Height);
 
                 indexedPlane.VertexBuffer[i] = v;
             }
